@@ -28,8 +28,9 @@ namespace Movies
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                // options.UseSqlite(
+                //     Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql("server=localhost;database=movies;user=root;pwd=;"));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
