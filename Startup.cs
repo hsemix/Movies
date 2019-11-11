@@ -33,7 +33,8 @@ namespace Movies
                 options.UseMySql("server=localhost;database=movies;user=root;pwd=;"));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            // services.AddMvc().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

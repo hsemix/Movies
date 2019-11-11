@@ -1,85 +1,84 @@
 @page
 @model LoginModel
-
 @{
-    ViewData["Title"] = "Log in";
+    Layout = null;
 }
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <button type="submit" asp-page-handler="SendVerificationEmail" class="btn-link" style="padding:0px;margin:0px;border:0px">Resend email confirmation</button>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+    <title>Admin Area | Login</title>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <!-- Bootstrap core CSS -->
+    <link href="~/cms/css/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/cms/css/cms.css" rel="stylesheet">
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Movie Library Manager</a>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <header id="header">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-12">
+    				<h1 class="text-center">Admin Area <small>Account Login</small></h1>
+    			</div>
+    			
+    		</div>
+    	</div>
+    </header>
+    <section id="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <form id="account" class="well" method="post"> 
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input type="text" asp-for="Input.Email" id="username" class="form-control" placeholder="Enter Your username">
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" asp-for="Input.Password" id="password" class="form-control" placeholder="Enter Your Password">
+                <span class="help-block"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block main-color-bg">Login</button>
+            
+            </form>    
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer id="footer">
+      <p>
+        Library Manager &copy; 2019
+      </p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/cms/css/bootstrap-3.3.7/js/bootstrap.min.js'"></script>
+    
+  </body>
+</html>
